@@ -20,9 +20,9 @@ function Navbar() {
 
   const navItems = [
     { name: "Home", href: "/" },
-    { name: "Backend", href: "/backend" },
     { name: "Frontend Web", href: "/frontend-web" },
     { name: "Frontend Mobile", href: "/frontend-mobile" },
+    { name: "Backend", href: "/backend" },
   ];
 
   const toggleMobileMenu = () => {

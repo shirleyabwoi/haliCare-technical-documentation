@@ -1,6 +1,7 @@
 "use client";
 import Navbar from "../shared-components/NavBar";
 import Footer from "../shared-components/Footer";
+import Image from "next/image";
 
 export default function Docs() {
   return (
@@ -16,8 +17,23 @@ export default function Docs() {
           </div>
         </div>
         <main className="flex-1 max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-20 space-y-12 sm:space-y-16 md:space-y-20 bg-white text-gray-800 font-sans">
+                <section className="mb-12 sm:mb-16 max-w-6xl mx-auto px-4 sm:px-6 md:px-6 border-l-4 border-[#17DFF9]">
+        <h2 className="text-2xl sm:text-3xl font-bold text-[#193479] mb-4 sm:mb-6">Setup Instructions</h2>
+        <div className="bg-[#F3F4F6] p-4 sm:p-6 rounded-2xl sm:rounded-3xl shadow-md max-w-4xl">
+          <pre className="text-xs sm:text-sm font-mono whitespace-pre-wrap text-gray-800">
+            {`git clone git@github.com:akirachix/halicare-frontend.git
+cd halicare-frontend
+npx create-next-app 
+cd halicare
+install dependencies (npm install)
+create .env file
+npm run dev
+`}
+          </pre>
+        </div>
+      </section>
           <section className="max-w-4xl mx-auto px-4 sm:px-6 border-l-4 border-[#001F54] pl-4 sm:pl-6">
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">Technology Stack</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold text-[#193479] mb-4 sm:mb-6">Technology Stack</h2>
             <p className="mb-4 leading-relaxed text-sm sm:text-base">
               Our frontend leverages modern, efficient technologies to ensure a responsive, maintainable, and scalable user experience. Next.js remains a leading framework for React applications in 2025, providing powerful features like hybrid rendering, optimized performance, and seamless routing.
             </p>
@@ -30,7 +46,7 @@ export default function Docs() {
             </ul>
           </section>
           <section className="max-w-4xl mx-auto px-4 sm:px-6 border-l-4 border-[#17DFF9] pl-4 sm:pl-6">
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">Code Structure</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold text-[#193479] mb-4 sm:mb-6">Code Structure</h2>
             <p className="mb-4 leading-relaxed text-sm sm:text-base">
               The project is organized to promote modularity and efficient development. Key folders separate concerns such as user interface components, API routes, hooks, and utilities:
             </p>
@@ -54,7 +70,7 @@ export default function Docs() {
 
           </section>
           <section className="max-w-4xl mx-auto px-4 sm:px-6 border-l-4 border-[#001F54] pl-4 sm:pl-6">
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">Routes Overview</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold text-[#193479] mb-4 sm:mb-6">Routes Overview</h2>
             <p className="mb-4 leading-relaxed text-sm sm:text-base">
               The following routes structure the user experience guiding them through signup, clinic management, and daily operations.
             </p>
@@ -67,8 +83,13 @@ export default function Docs() {
               <li><strong>/services:</strong> Management interface to add new services, edit existing ones, or remove outdated offerings with search and pagination features.</li>
             </ul>
           </section>
+          <div className="relative inline-block mx-auto max-w-full overflow-hidden shadow-md border border-gray-200">
+              <Image src="/images/routs.png" alt="Entity Relationship Diagram" height={500} width={900} className="mx-auto max-w-full h-auto mt-5"
+                  priority
+              />
+           </div>
           <section className="max-w-4xl mx-auto px-4 sm:px-6 pl-4 sm:pl-6">
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 sm:mb-6 border-t-4 border-[#001F54] pt-4">Testing & Quality Assurance</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold text-[#193479] mb-4 sm:mb-6 border-t-4 border-[#001F54] pt-4">Testing & Quality Assurance</h2>
             <p className="leading-relaxed text-sm sm:text-base mb-4">
               Our testing strategy centers on frontend stability and user interface correctness using Jest with React Testing Library. Tests are executed automatically with each code change through continuous integration.
             </p>
@@ -96,7 +117,7 @@ export default function Docs() {
             </div>
           </section>
           <section className="max-w-4xl mx-auto px-4 sm:px-6 pl-4 sm:pl-6">
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 sm:mb-6 border-t-4 border-[#17DFF9] pt-4">Deployment</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold text-[#193479] mb-4 sm:mb-6 border-t-4 border-[#17DFF9] pt-4">Deployment</h2>
             <p className="leading-relaxed text-sm sm:text-base mb-4">
               Deployment to production is streamlined via Vercel, allowing rapid and reliable delivery of new features and fixes with minimal manual intervention.
             </p>

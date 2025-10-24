@@ -91,6 +91,32 @@ function HomePage() {
             />
           </div>
         </section>
+              <section className="mb-12 sm:mb-16 max-w-6xl mx-auto px-4 sm:px-6 md:px-6">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#193479] mb-6 sm:mb-8">User Workflows</h2>
+        <p className="text-black mb-6 sm:mb-8 max-w-4xl leading-relaxed text-sm sm:text-base">
+          Designed around real patient and clinician needs because seamless access to care can mean the difference between life and death.
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 max-w-4xl">
+          <div className="bg-white p-4 sm:p-6 rounded-2xl sm:rounded-3xl shadow-lg border border-gray-100 hover:border-[#597DD8] hover:shadow-xl transition-all duration-300">
+            <h3 className="font-bold text-base sm:text-lg text-[#193479] mb-3">Patient Journey</h3>
+            <ul className="list-disc pl-5 space-y-1 text-black text-sm sm:text-base">
+              <li>Search nearby clinics using geolocation</li>
+              <li>View real-time ARV & service availability</li>
+              <li>Book appointment for counseling or ARV refill</li>
+              <li>Receive confirmation via SMS/app</li>
+            </ul>
+          </div>
+          <div className="bg-white p-4 sm:p-6 rounded-2xl sm:rounded-3xl shadow-lg border border-gray-100 hover:border-[#597DD8] hover:shadow-xl transition-all duration-300">
+            <h3 className="font-bold text-base sm:text-lg text-[#193479] mb-3">Clinician Workflow</h3>
+            <ul className="list-disc pl-5 space-y-1 text-black text-sm sm:text-base">
+              <li>Log in to dashboard</li>
+              <li>Update clinic status (open/closed)</li>
+              <li>Mark ARV/services as available/unavailable</li>
+              <li>Manage incoming appointments</li>
+            </ul>
+          </div>
+        </div>
+      </section>
         <section className="max-w-6xl mx-auto py-16 sm:py-20 px-4 sm:px-6 md:px-6">
           <div className="text-center mb-8 sm:mb-10 px-2">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#193479] mb-3">Quality Assurance</h2>

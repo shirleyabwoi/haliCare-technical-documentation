@@ -20,8 +20,79 @@ const BackendDocumentation = () => {
           </p>
         </div>
       </div>
+      <section className="mb-12 sm:mb-16 max-w-6xl mx-auto px-4 sm:px-6 md:px-6 mt-10">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#193479] mb-4 sm:mb-6">
+          Entity Relationship Overview
+        </h2>
+        <p className="text-black mb-4 sm:mb-6 max-w-4xl leading-relaxed text-sm sm:text-base">
+          The backend database schema models the core entities and their relationships to ensure data consistency:
+        </p>
+        <ul className="list-disc pl-5 sm:pl-6 space-y-2 sm:space-y-3 text-black max-w-4xl text-sm sm:text-base">
+          <li><strong>Users and Clinics:</strong> A single user can be associated with many clinics (one-to-many).</li>
+          <li><strong>Clinics and Services:</strong> Clinics offer multiple services and each service can belong to multiple clinics (many-to-many).</li>
+          <li><strong>User and Appointment:</strong> Each user has one unique appointment at a given time (one-to-one).</li>
+          <li><strong>Clinic and Appointment:</strong> Clinics can have many appointments booked (one-to-many).</li>
+          <li><strong>Service and Appointment:</strong> Each appointment relates to exactly one service (one-to-one).</li>
+        </ul>
+        <p className="text-black max-w-4xl mb-4 sm:mb-6 leading-relaxed text-sm sm:text-base">
+          These relationships are implemented and visualized in tools like DBeaver, synchronized with a visual ER diagram below.
+          The schema prioritizes relational integrity, scalability, and clarity of purpose.
+        </p>
+        <div className="relative inline-block mx-auto max-w-full overflow-hidden rounded-xl sm:rounded-2xl shadow-md border border-gray-200">
+          <Image src="/images/erddiagram.png" alt="Entity Relationship Diagram" height={400} width={700} className="mx-auto rounded-xl sm:rounded-2xl max-w-full h-auto"
+            priority
+          />
+        </div>
+      </section>
       <section className="mb-12 sm:mb-16 max-w-6xl mx-auto px-4 sm:px-6 md:px-6">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#193479] mb-4 sm:mb-6 mt-8 sm:mt-12">Project Structure</h2>
+        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#193479] mb-4 mt-15 sm:mb-6">Technology Stack</h2>
+        <p className="text-black mb-4 max-w-4xl leading-relaxed text-sm sm:text-base">
+          Our technology choices ensure security, reliability, and speed in delivering healthcare services. 
+          <strong>Django 4.2</strong> provides a secure, all-in-one framework for rapid backend development.
+          <strong>Django REST Framework</strong> builds a powerful API layer with easy serialization,
+          <strong>PostgreSQL</strong> offers a dependable database ensuring data integrity,
+          and <strong>Heroku</strong> enables seamless cloud deployment and scaling.
+        </p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 max-w-4xl">
+          {[
+            { name: "Django 4.2 +", desc: "A high-level web framework for rapid development." },
+            { name: "Django REST Framework", desc: "For building secure and scalable APIs" },
+            { name: "PostgreSQL", desc: "A robust relational database for managing healthcare data." },
+            { name: "Heroku", desc: "Managed PaaS for rapid deployment" }
+          ].map((tech, idx) => (
+            <div
+              key={idx}
+              className="group bg-white p-4 sm:p-6 rounded-2xl sm:rounded-3xl shadow-lg border border-gray-100 hover:border-[#597DD8] hover:shadow-xl transition-all duration-300 text-center"
+            >
+              <div className="text-3xl sm:text-4xl mb-3 text-[#193479]">
+                {idx < 3 ? <FaDatabase /> : <FaCloudUploadAlt />}
+              </div>
+              <h3 className="font-bold text-base sm:text-lg text-[#193479] mb-2">{tech.name}</h3>
+              <p className="text-xs sm:text-sm text-black">{tech.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+      <section className="mb-12 sm:mb-16 max-w-6xl mx-auto px-4 sm:px-6 md:px-6">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#193479] mb-2 sm:mb-4">Setup Instructions</h2>
+        <div className="bg-[#F3F4F6] p-4 sm:p-6 rounded-2xl sm:rounded-3xl shadow-md max-w-4xl">
+          <pre className="text-xs sm:text-sm font-mono whitespace-pre-wrap text-gray-800">
+            {`git clone git@github.com:akirachix/halicare-backend.git
+cd halicare-backend
+python3 -m venv venv
+source venv/bin/activate  # For Windows use 'venv\\Scripts\\activate'
+pip install -r requirements.txt
+cp .env.example .env
+# Edit .env with your environment variables
+python manage.py migrate
+python manage.py createsuperuser
+python manage.py collectstatic --noinput
+python manage.py runserver`}
+          </pre>
+        </div>
+      </section>
+            <section className="mb-12 sm:mb-16 max-w-6xl mx-auto px-4 sm:px-6 md:px-6">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#193479] mb-4 sm:mb-6 mt-3 sm:mt-12">Project Structure</h2>
         <p className="text-black mb-3 max-w-4xl leading-relaxed text-sm sm:text-base">
           Our backend is built using Django's app-based modular architecture which organizes code into reusable components,
           promoting scalability and maintainability. Each app addresses a specific function: 
@@ -39,35 +110,6 @@ const BackendDocumentation = () => {
   └── halicare/            # Main Django app
 </pre>
        </div>
-      </section>
-      <section className="mb-12 sm:mb-16 max-w-6xl mx-auto px-4 sm:px-6 md:px-6">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#193479] mb-4 sm:mb-6">Technology Stack</h2>
-        <p className="text-black mb-4 max-w-4xl leading-relaxed text-sm sm:text-base">
-          Our technology choices ensure security, reliability, and speed in delivering healthcare services. 
-          <strong>Django 4.2</strong> provides a secure, all-in-one framework for rapid backend development.
-          <strong>Django REST Framework</strong> builds a powerful API layer with easy serialization,
-          <strong>PostgreSQL</strong> offers a dependable database ensuring data integrity,
-          and <strong>Heroku</strong> enables seamless cloud deployment and scaling.
-        </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 max-w-4xl">
-          {[
-            { name: "Django 4.2", desc: "Secure, batteries-included framework" },
-            { name: "Django REST Framework", desc: "Robust API layer with serialization" },
-            { name: "PostgreSQL", desc: "Reliable, ACID-compliant database" },
-            { name: "Heroku", desc: "Managed PaaS for rapid deployment" }
-          ].map((tech, idx) => (
-            <div
-              key={idx}
-              className="group bg-white p-4 sm:p-6 rounded-2xl sm:rounded-3xl shadow-lg border border-gray-100 hover:border-[#597DD8] hover:shadow-xl transition-all duration-300 text-center"
-            >
-              <div className="text-3xl sm:text-4xl mb-3 text-[#193479]">
-                {idx < 3 ? <FaDatabase /> : <FaCloudUploadAlt />}
-              </div>
-              <h3 className="font-bold text-base sm:text-lg text-[#193479] mb-2">{tech.name}</h3>
-              <p className="text-xs sm:text-sm text-black">{tech.desc}</p>
-            </div>
-          ))}
-        </div>
       </section>
       <section className="mb-12 sm:mb-16 max-w-6xl mx-auto px-4 sm:px-6 md:px-6">
         <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#193479] mb-4 sm:mb-6"> Core Data Models </h2>
@@ -153,33 +195,28 @@ class Appointment(models.Model):
           ))}
         </div>
       </section>
-      <section className="mb-12 sm:mb-16 max-w-6xl mx-auto px-4 sm:px-6 md:px-6">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#193479] mb-6 sm:mb-8">User Workflows</h2>
-        <p className="text-black mb-6 sm:mb-8 max-w-4xl leading-relaxed text-sm sm:text-base">
-          Designed around real patient and clinician needs because seamless access to care can mean the difference between life and death.
+            <section className="mb-12 sm:mb-16 max-w-6xl mx-auto px-4 sm:px-6 md:px-6 mt-10">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#193479] mb-4 sm:mb-6">
+          Swagger Documentation
+        </h2>
+        <p className="text-black mb-4 sm:mb-6 max-w-4xl leading-relaxed text-sm sm:text-base">
+          The Swagger documentation provides a comprehensive overview of the API endpoints for HaliCare. It includes detailed descriptions of each available route, their expected parameters, request and response structures, and authentication requirements where applicable. This interactive interface allows developers and users to explore, test, and understand the functionalities of the API seamlessly, facilitating smooth integration and efficient development workflows.
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 max-w-4xl">
-          <div className="bg-white p-4 sm:p-6 rounded-2xl sm:rounded-3xl shadow-lg border border-gray-100 hover:border-[#597DD8] hover:shadow-xl transition-all duration-300">
-            <h3 className="font-bold text-base sm:text-lg text-[#193479] mb-3">Patient Journey</h3>
-            <ul className="list-disc pl-5 space-y-1 text-black text-sm sm:text-base">
-              <li>Search nearby clinics using geolocation</li>
-              <li>View real-time ARV & service availability</li>
-              <li>Book appointment for counseling or ARV refill</li>
-              <li>Receive confirmation via SMS/app</li>
-            </ul>
-          </div>
-          <div className="bg-white p-4 sm:p-6 rounded-2xl sm:rounded-3xl shadow-lg border border-gray-100 hover:border-[#597DD8] hover:shadow-xl transition-all duration-300">
-            <h3 className="font-bold text-base sm:text-lg text-[#193479] mb-3">Clinician Workflow</h3>
-            <ul className="list-disc pl-5 space-y-1 text-black text-sm sm:text-base">
-              <li>Log in to dashboard</li>
-              <li>Update clinic status (open/closed)</li>
-              <li>Mark ARV/services as available/unavailable</li>
-              <li>Manage incoming appointments</li>
-            </ul>
-          </div>
-        </div>
+<div className="relative inline-block mx-auto max-w-full overflow-hidden rounded-xl sm:rounded-2xl shadow-md border border-gray-200">
+  <a href="https://halicare-7bfc32637910.herokuapp.com/api/schema/swagger-ui/" target="_blank" rel="noopener noreferrer" className="block">
+    <Image
+      src="/images/swaggerImage.png"
+      alt="Entity Relationship Diagram"
+      height={400}
+      width={700}
+      className="mx-auto rounded-xl sm:rounded-2xl max-w-full h-auto cursor-pointer transition-transform duration-300 ease-in-out hover:scale-105"
+      priority
+    />
+  </a>
+</div>
+
       </section>
-      <section className="mb-12 sm:mb-16 max-w-6xl mx-auto px-4 sm:px-6 md:px-6">
+        <section className="mb-12 sm:mb-16 max-w-6xl mx-auto px-4 sm:px-6 md:px-6">
         <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#193479] mb-4 sm:mb-6 flex items-center gap-2 sm:gap-3">
           <FaShieldAlt className="text-[#193479]" /> Security & Data Sensitivity
         </h2>
@@ -192,30 +229,6 @@ class Appointment(models.Model):
           <li>Full phone numbers and sensitive health details are never logged in plaintext</li>
           <li>Compliance with Kenya's Data Protection Act (2019) ensures legal and ethical handling</li>
         </ul>
-      </section>
-      <section className="mb-12 sm:mb-16 max-w-6xl mx-auto px-4 sm:px-6 md:px-6">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#193479] mb-4 sm:mb-6">
-          Entity Relationship Overview
-        </h2>
-        <p className="text-black mb-4 sm:mb-6 max-w-4xl leading-relaxed text-sm sm:text-base">
-          The backend database schema models the core entities and their relationships to ensure data consistency:
-        </p>
-        <ul className="list-disc pl-5 sm:pl-6 space-y-2 sm:space-y-3 text-black max-w-4xl text-sm sm:text-base">
-          <li><strong>Users and Clinics:</strong> A single user can be associated with many clinics (one-to-many).</li>
-          <li><strong>Clinics and Services:</strong> Clinics offer multiple services and each service can belong to multiple clinics (many-to-many).</li>
-          <li><strong>User and Appointment:</strong> Each user has one unique appointment at a given time (one-to-one).</li>
-          <li><strong>Clinic and Appointment:</strong> Clinics can have many appointments booked (one-to-many).</li>
-          <li><strong>Service and Appointment:</strong> Each appointment relates to exactly one service (one-to-one).</li>
-        </ul>
-        <p className="text-black max-w-4xl mb-4 sm:mb-6 leading-relaxed text-sm sm:text-base">
-          These relationships are implemented and visualized in tools like DBeaver, synchronized with a visual ER diagram below.
-          The schema prioritizes relational integrity, scalability, and clarity of purpose.
-        </p>
-        <div className="relative inline-block mx-auto max-w-full overflow-hidden rounded-xl sm:rounded-2xl shadow-md border border-gray-200">
-          <Image src="/images/erddiagram.png" alt="Entity Relationship Diagram" height={400} width={700} className="mx-auto rounded-xl sm:rounded-2xl max-w-full h-auto"
-            priority
-          />
-        </div>
       </section>
       <section className="mb-12 sm:mb-16 max-w-6xl mx-auto px-4 sm:px-6 md:px-6 bg-gray-50 py-8 sm:py-12 rounded-2xl sm:rounded-3xl">
         <div className="flex items-center justify-center mb-4 sm:mb-6">
@@ -244,25 +257,6 @@ class Appointment(models.Model):
               <li>This pipeline ensures backend updates are validated continuously and regressions caught early.</li>
             </ul>
           </div>
-        </div>
-      </section>
-
-      <section className="mb-12 sm:mb-16 max-w-6xl mx-auto px-4 sm:px-6 md:px-6">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#193479] mb-4 sm:mb-6">Setup Instructions</h2>
-        <div className="bg-[#F3F4F6] p-4 sm:p-6 rounded-2xl sm:rounded-3xl shadow-md max-w-4xl">
-          <pre className="text-xs sm:text-sm font-mono whitespace-pre-wrap text-gray-800">
-            {`git clone https://github.com/yourusername/halicare-backend.git
-cd halicare-backend
-python3 -m venv venv
-source venv/bin/activate  # For Windows use 'venv\\Scripts\\activate'
-pip install -r requirements.txt
-cp .env.example .env
-# Edit .env with your environment variables
-python manage.py migrate
-python manage.py createsuperuser
-python manage.py collectstatic --noinput
-python manage.py runserver`}
-          </pre>
         </div>
       </section>
       <section className="mb-12 sm:mb-16 max-w-6xl mx-auto px-4 sm:px-6 md:px-6">
