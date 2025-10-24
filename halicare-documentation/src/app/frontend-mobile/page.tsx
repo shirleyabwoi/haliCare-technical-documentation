@@ -74,20 +74,17 @@ export default function MobileDocumentationPage() {
               <li>State updates are reactive and lifecycle-aware</li>
             </ul>
           </div>
-
-                <section className="mb-5 sm:mb-16 max-w-6xl mx-auto px-4 sm:px-6 md:px-6">
-        <h2 className="text-xl font-semibold mb-4 text-[#001F54] mt-7">Setup Instructions</h2>
-        <div className="bg-[#F3F4F6] p-4 sm:p-6 rounded-2xl sm:rounded-3xl shadow-md max-w-4xl">
-          <pre className="text-xs sm:text-sm font-mono whitespace-pre-wrap text-gray-800">
-            {`git clone git@github.com:akirachix/halicare-mobile.git
-cd halicare-mobile
-open in Android studio
-install dependencies
-wait for gradle sync
-run app`}
-          </pre>
-        </div>
-      </section>
+            <div className="bg-gray-50 p-6 rounded-xl">
+            <h3 className="text-xl font-semibold mb-4 text-[#001F54]">Setup Instructions</h3>
+            <ul className="space-y-2 text-gray-700">
+              <li>git clone git@github.com:akirachix/halicare-mobile.git</li>
+              <li>cd halicare-mobile</li>
+              <li>open in Android studio</li>
+              <li>install dependencies</li>
+              <li>wait for gradle sync</li>
+              <li>run app</li>
+            </ul>
+          </div>
 
           <div className="bg-gray-50 p-6 rounded-xl">
             <h3 className="text-xl font-semibold mb-4 text-[#001F54]">Key Libraries</h3>
