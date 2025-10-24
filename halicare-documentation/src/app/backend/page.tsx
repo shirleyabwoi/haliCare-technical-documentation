@@ -39,7 +39,7 @@ const BackendDocumentation = () => {
           The schema prioritizes relational integrity, scalability, and clarity of purpose.
         </p>
         <div className="relative inline-block mx-auto max-w-full overflow-hidden rounded-xl sm:rounded-2xl shadow-md border border-gray-200">
-          <Image src="/images/erddiagram.png" alt="Entity Relationship Diagram" height={400} width={700} className="mx-auto rounded-xl sm:rounded-2xl max-w-full h-auto"
+          <Image src="/images/erddiagram.png" alt="Entity Relationship Diagram" height={300} width={400} className="mx-auto rounded-xl sm:rounded-2xl max-w-full h-auto"
             priority
           />
         </div>

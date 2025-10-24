@@ -58,8 +58,25 @@ export default function MobileDocumentationPage() {
           </div>
         </div>
       </section>
-            <section className="mb-5 sm:mb-16 max-w-6xl mx-auto px-4 sm:px-6 md:px-6 md:ml-180 sm:ml-180">
-        <h2 className="text-3xl font-bold text-[#001F54] mb-6 px-2 sm:px-0">Setup Instructions</h2>
+            <section className="py-16 px-4 sm:px-8 max-w-6xl mx-auto">
+        <h2 className="text-3xl font-bold text-[#001F54] mb-6 text-center px-2 sm:px-0">Mobile Architecture</h2>
+        <p className="text-gray-700 mb-8 text-center max-w-4xl mx-auto px-2 sm:px-0">
+          The app follows a clean, maintainable architecture that prioritizes reliability and offline resilience because patients in remote or low-connectivity areas deserve uninterrupted access to care.
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8 px-2 sm:px-0">
+          <div className="bg-gray-50 p-6 rounded-xl">
+            <h3 className="text-xl font-semibold mb-4 text-[#001F54]">Data Flow</h3>
+            <ul className="space-y-2 text-gray-700">
+              <li>UI (Jetpack Compose) → ViewModel → Repository → API/Room</li>
+              <li>Real-time data syncs with the Django backend</li>
+              <li>Offline-first design: clinic data is cached locally</li>
+              <li>State updates are reactive and lifecycle-aware</li>
+            </ul>
+          </div>
+
+                <section className="mb-5 sm:mb-16 max-w-6xl mx-auto px-4 sm:px-6 md:px-6">
+        <h2 className="text-xl font-semibold mb-4 text-[#001F54] mt-7">Setup Instructions</h2>
         <div className="bg-[#F3F4F6] p-4 sm:p-6 rounded-2xl sm:rounded-3xl shadow-md max-w-4xl">
           <pre className="text-xs sm:text-sm font-mono whitespace-pre-wrap text-gray-800">
             {`git clone git@github.com:akirachix/halicare-mobile.git
@@ -71,22 +88,6 @@ run app`}
           </pre>
         </div>
       </section>
-            <section className="py-16 px-4 sm:px-8 max-w-6xl mx-auto">
-        <h2 className="text-3xl font-bold text-[#001F54] mb-6 text-center px-2 sm:px-0">Mobile Architecture</h2>
-        <p className="text-gray-700 mb-8 text-center max-w-4xl mx-auto px-2 sm:px-0">
-          The app follows a clean, maintainable architecture that prioritizes reliability and offline resilience because patients in remote or low-connectivity areas deserve uninterrupted access to care.
-        </p>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8 px-2 sm:px-0">
-          <div className="bg-gray-50 p-6 rounded-xl">
-            <h3 className="text-xl font-semibold mb-4 text-[#001F54]">Data Flow</h3>
-            <ul className="space-y-2 text-gray-700">
-              <li>UI (Jetpack Compose) → ViewModel → Repository → API/Room</li>
-              <li>Real-time data syncs with the Django backend</li>
-              <li>Offline-first design: clinic data is cached locally</li>
-              <li>State updates are reactive and lifecycle-aware</li>
-            </ul>
-          </div>
 
           <div className="bg-gray-50 p-6 rounded-xl">
             <h3 className="text-xl font-semibold mb-4 text-[#001F54]">Key Libraries</h3>
@@ -142,7 +143,7 @@ run app`}
               <p className="text-gray-600 leading-relaxed">
                 Introduces the app's purpose with a clear “Get Started” CTA. Built with Jetpack Compose's Column and TextButton. Includes a subtle “Skip” option for returning users in the top-right corner.
               </p>
-              <p className="text-lg font-bold text-[#001F54] mb-3 mt-6">The screen is implemented using a native Android fragment/activity using Java (or Kotlin) in Android Studio, with UI elements defined in XML layouts and following Material Design guidelines for a consistent and accessible user experience.</p>
+              <p className="text-gray-600 leading-relaxed mb-3 mt-6">The screen is implemented using a native <b>Android fragment/activity using Kotlin</b> in Android Studio, with UI elements defined in XML layouts and following Material Design guidelines for a consistent and accessible user experience.</p>
             </div>
           </div>
           <div className="flex flex-col items-center lg:flex-row lg:justify-center gap-6 lg:gap-12 mb-8">
@@ -168,8 +169,8 @@ run app`}
             <p className="text-gray-600 leading-relaxed">
               Designed for privacy and ease: users sign up with only a phone number and password. No unnecessary personal data is collected. All credentials are protected with end-to-end encryption and secure token storage.
             </p>
-            <p className="text-lg font-bold text-[#001F54] mb-3 mt-6">The sign-up and sign-in screens are built as Android activities in Android Studio using Kotlin, with layout defined in XML. User authentication is handled via secure HTTPS requests to the backend REST API, and authentication tokens are stored using the Android Keystore system to ensure secure, encrypted local storage.
-              The app supports secure user onboarding via Sign Up (phone + password) and returning access via Sign In. Both forms use real-time validation, error handling, and JWT-based authentication with the Django backend. Passwords are never stored locally; tokens are secured using EncryptedSharedPreferences.
+            <p className="mb-3 mt-6 text-gray-600 leading-relaxed">The sign-up and sign-in screens are built as Android activities in Android Studio using Kotlin, with layout defined in XML. User authentication is handled via <b>secure HTTPS</b> requests to the backend REST API, and authentication tokens are stored using the <b>Android Keystore system</b> to ensure secure, encrypted local storage.
+              The app supports secure user onboarding via Sign Up (phone number + password) and returning access via Sign In. Both forms use <b>real-time validation, error handling, and JWT-based authentication</b> with the Django backend. Passwords are never stored locally; tokens are secured using <b>EncryptedSharedPreferences</b>.
             </p>
           </div>
         </div>
@@ -190,8 +191,8 @@ run app`}
                 The app gently requests location access to show nearby clinics but never forces it. If denied, users can search by city or region, ensuring no one is excluded due to privacy preferences.
                 Requests coarse location access to find nearby clinics. If denied, falls back to manual address input. Permission handled via ActivityResultContracts.RequestPermission() in Compose.
               </p>
-              <p className="text-lg font-bold text-[#001F54] mb-3 mt-6"> 
-                Location permission is requested at runtime using Android’s ActivityCompat.requestPermissions() API (targeting Android 6.0+). The app checks for ACCESS_FINE_LOCATION or ACCESS_COARSE_LOCATION permissions and gracefully falls back to a manual location input UI (EditText + auto-suggest dropdown) if access is denied. All location handling adheres to Google’s privacy best practices and uses the Fused Location Provider from Google Play Services when available.
+              <p className="mb-3 mt-6 text-gray-600 leading-relaxed"> 
+                Location permission is requested at runtime using <b>Android’s ActivityCompat.requestPermissions()API (targeting Android 6.0+).</b> The app checks for <b>ACCESS_FINE_LOCATION</b> or <b>ACCESS_COARSE_LOCATION</b> permissions and gracefully falls back to a manual location input UI (EditText + auto-suggest dropdown) if access is denied. All location handling adheres to <b>Google’s privacy best practices</b> and uses the <b>Fused Location Provider</b> from Google Play Services when available.
               </p>
             </div>
           </div>
@@ -210,8 +211,9 @@ run app`}
                 Clinics are displayed with clear operating status, services offered, and distance. This transparency helps patients make informed decisions quickly reducing anxiety and travel time.
                 Displays paginated clinic results sorted by distance. Uses LazyColumn with pull-to-refresh and infinite scroll. Each item is a reusable ClinicCard composable.
               </p>
-              <p className="text-lg font-bold text-[#001F54] mb-3 mt-6">
-                The clinics list is rendered in a RecyclerView within an Android activity or fragment, using a custom adapter to bind clinic data fetched from the HaliCare backend API via Retrofit. Each item layout (defined in XML) displays real-time status indicators, service tags, and distance calculated using the device’s last known location or user-provided region. The UI follows Material Design principles and supports efficient scrolling and accessibility </p>
+              <p className="text-gray-600 leading-relaxed mb-3 mt-6">
+                The clinics list is rendered in a <b>RecyclerView within an Android activity</b>, using a custom adapter to bind clinic data fetched from the HaliCare backend API via <b>Retrofit</b>. Each item layout (defined in XML) displays real-time status indicators, service tags, and distance calculated using the device’s last known location or user-provided region.
+                 The UI follows <b>Material Design principles</b> and supports efficient scrolling and accessibility </p>
             </div>
           </div>
 
@@ -230,8 +232,9 @@ run app`}
                 Each clinic profile includes verified hours, available services, and contact info. A prominent “Book Appointment” button enables immediate action because timely care saves lives.
                 Data is cached locally using Room to improve offline experience.
               </p>
-              <p className="text-lg font-bold text-[#001F54] mb-3 mt-6">
-                The clinic detail screen is implemented as a Fragment or Activity in Android Studio using Kotlin (or Java), with UI components defined in XML. Data is loaded asynchronously from the HaliCare backend API via Retrofit and displayed using TextViews, ChipGroups for services, and clickable Buttons or FloatingActionButton for appointment booking. The screen integrates deep linking support and uses ViewModel with LiveData (or StateFlow) to manage UI state and ensure responsiveness.
+              <p className="text-gray-600 leading-relaxed mb-3 mt-6">
+                The clinic detail screen is implemented as an Activity in Android Studio using Kotlin, with UI components defined in XML. <b>Data is loaded asynchronously</b> from the HaliCare backend API via Retrofit and displayed using TextViews, ChipGroups for services, and clickable Buttons or FloatingActionButton for appointment booking. The screen integrates deep linking support and uses ViewModel with
+                 <b className="ml-1">LiveData (or StateFlow)</b> to manage UI state and ensure responsiveness.
               </p>
             </div>
           </div>
@@ -253,8 +256,8 @@ run app`}
                 The booking calendar shows only available slots in real time preventing double bookings and patient frustration. It’s designed for simplicity, even for first-time smartphone users.
                 Custom calendar built with LazyVerticalGrid. Available slots are highlighted in green; unavailable dates are grayed out. State is managed via ViewModel with StateFlow.
               </p>
-              <p className="text-lg font-bold text-[#001F54] mb-3 mt-6">
-                The calendar interface is built using a lightweight, customizable open-source library such as MaterialCalendarView or Android-Week-View, integrated into an Android Fragment or Activity. Available time slots are fetched dynamically from the HaliCare backend API via Retrofit based on the selected date and clinic. User selections trigger real-time validation to ensure only open slots are bookable, and all interactions follow Android’s accessibility and touch-target guidelines for ease of use.
+              <p className="text-gray-600 leading-relaxed mb-3 mt-6">
+                The calendar interface is built using a lightweight, customizable open-source library, <b>MaterialCalendarView</b>, integrated into an Android Activity. Available time slots are fetched dynamically from the HaliCare backend API via Retrofit based on the selected date and clinic. User selections trigger <b>real-time validation</b> to ensure only open slots are bookable, and all interactions follow Android’s accessibility and touch-target guidelines for ease of use.
               </p>
             </div>
           </div>
